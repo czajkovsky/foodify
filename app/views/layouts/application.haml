@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag :application
+
+  %body#main_container{ data: { view_name: rails_view_name } }
+    #controller_wrapper{ class: controller_name }
+      #wrapper{ class: action_name }
+        = yield
