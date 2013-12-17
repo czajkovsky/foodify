@@ -4,7 +4,8 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag :application
 
-  %body#main_container{ data: { view_name: rails_view_name } }
+  %body#main_container{ data: { view_name: "#{controller_name}-#{action_name}" } }
     #controller_wrapper{ class: controller_name }
       #wrapper{ class: action_name }
+        = render 'shared/menu'
         = yield
