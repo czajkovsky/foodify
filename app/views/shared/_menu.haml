@@ -8,4 +8,7 @@
           %span.icon-bar
           %span.icon-bar
       .navbar-collapse.collapse
-        %ul.nav.navbar-nav.uppercased
+        %ul.nav.navbar-nav
+        - if user_signed_in?
+          %ul.nav.navbar-nav.navbar-right
+            %li= link_to 'Sign out', destroy_user_session_path, method: :delete
