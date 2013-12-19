@@ -4,4 +4,6 @@ Foodify::Application.routes.draw do
 
   root to: 'main#index'
 
+  get 'users/', to: 'users#index'
+
 end
