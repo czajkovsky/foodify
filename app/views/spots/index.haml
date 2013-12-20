@@ -10,15 +10,15 @@
           %th State
           %th Actions
         %tbody.table-hover
-          - @spots.each do |spot|
+          - spots.each do |s|
             %tr
-              %td= spot.name
+              %td= s.name
               %td
-                %span{ class: spot.decorate.state_class }= spot.state
+                %span{ class: s.decorate.state_class }= s.state
               %td
-                = link_to 'Show', spot, class: 'btn btn-default pull-right'
-                = link_to 'Edit', edit_spot_path(spot), class: 'btn btn-default pull-right'
-                = link_to 'Destroy', spot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
+                = link_to 'Show', s, class: 'btn btn-default pull-right'
+                = link_to 'Edit', edit_spot_path(s), class: 'btn btn-default pull-right'
+                = link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
   .row.admin-table
     .col-xs-12
       = link_to 'New Spot', new_spot_path, class: 'btn btn-default'
