@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131220212904) do
+ActiveRecord::Schema.define(:version => 20131220215048) do
 
   create_table "spots", :force => true do |t|
     t.integer  "balance"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20131220212904) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
-    t.integer  "capacity"
   end
 
   create_table "users", :force => true do |t|
