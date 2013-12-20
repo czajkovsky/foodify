@@ -1,13 +1,10 @@
 class SpotDecorator < Draper::Decorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def state_class
+    classes = { 'free' => 'success', 'used' => 'info', 'finished' => 'danger' }
+    label_class = "label label-#{classes[object.state.to_s]}"
+    label_class
+  end
 
 end

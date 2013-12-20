@@ -13,7 +13,8 @@
           - @spots.each do |spot|
             %tr
               %td= spot.name
-              %td= spot.state
+              %td
+                %span{ class: spot.decorate.state_class }= spot.state
               %td
                 = link_to 'Show', spot, class: 'btn btn-default pull-right'
                 = link_to 'Edit', edit_spot_path(spot), class: 'btn btn-default pull-right'
