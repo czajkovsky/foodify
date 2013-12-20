@@ -1,4 +1,8 @@
 class SpotsController < ApplicationController
+
+  before_filter :authenticate_user!
+  before_filter :is_worker?, except: [:index, :show]
+
   # GET /spots
   # GET /spots.json
   def index
