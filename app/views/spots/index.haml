@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-xs-12
+      %h1 All spots
+  .row.border-top.admin-table
+    .col-xs-12
+      - @spots.each do |spot|
+        .row.border-bottrom
+          .col-xs-5
+            %p= spot.name
+          .col-xs-3
+            %p= spot.status
+          .col-xs-4
+            = link_to 'Show', spot, class: 'btn btn-default pull-right'
+            = link_to 'Edit', edit_spot_path(spot), class: 'btn btn-default pull-right'
+            = link_to 'Destroy', spot, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
+  .row.admin-table
+    .col-xs-12
+      = link_to 'New Spot', new_spot_path, class: 'btn btn-default'
