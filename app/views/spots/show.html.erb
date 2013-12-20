@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Balance:</b>
+  <%= @spot.balance %>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%= @spot.client %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @spot.status %>
+</p>
+
+<p>
+  <b>Waiter:</b>
+  <%= @spot.waiter %>
+</p>
+
+
+<%= link_to 'Edit', edit_spot_path(@spot) %> |
+<%= link_to 'Back', spots_path %>
