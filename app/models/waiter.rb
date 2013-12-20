@@ -1,0 +1,2 @@
+class Waiter < Worker
+end

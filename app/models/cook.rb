@@ -1,0 +1,2 @@
+class Cook < Worker
+end
