@@ -5,7 +5,7 @@ describe "spots/edit" do
     @spot = assign(:spot, stub_model(Spot,
       :balance => 1,
       :client => 1,
-      :status => "MyString",
+      :state => "MyString",
       :waiter => 1
     ))
   end

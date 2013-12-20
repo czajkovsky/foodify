@@ -7,13 +7,13 @@
       %table.table.table-striped.table-responsive
         %thead
           %th Name
-          %th Status
+          %th State
           %th Actions
         %tbody.table-hover
           - @spots.each do |spot|
             %tr
               %td= spot.name
-              %td= spot.status
+              %td= spot.state
               %td
                 = link_to 'Show', spot, class: 'btn btn-default pull-right'
                 = link_to 'Edit', edit_spot_path(spot), class: 'btn btn-default pull-right'
