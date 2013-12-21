@@ -29,7 +29,8 @@ class SpotsController < ApplicationController
   end
 
   def assign_to_client
-    spot.update_attributes(client_id: current_user.id)
+    spot.update_attributes(client_id: current_user.id, status: 'pending')
+    current_user.update_attributes(status: 'at_table')
     redirect_to spots_path
   end
 

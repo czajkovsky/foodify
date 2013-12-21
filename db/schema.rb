@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131221122630) do
+ActiveRecord::Schema.define(:version => 20131221153806) do
 
   create_table "spots", :force => true do |t|
     t.integer  "balance"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20131221122630) do
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.string   "type",                   :default => "Client", :null => false
+    t.string   "status",                 :default => "out",    :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -8,6 +8,7 @@
         %thead
           %th Email
           %th Type
+          %th Status
           %th Actions
         %tbody.table-hover
           - users.each do |u|
@@ -15,6 +16,8 @@
               %td= u.email
               %td
                 %span.label.label-default= u.type
+              %td
+                = u.status
               %td
                 = link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
                 = link_to 'Show', u, class: 'btn btn-default pull-right'
