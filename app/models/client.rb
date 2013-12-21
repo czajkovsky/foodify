@@ -1,3 +1,3 @@
 class Client < User
-  has_many :spots
+  has_one :spot
 end
