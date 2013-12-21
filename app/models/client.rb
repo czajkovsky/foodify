@@ -13,4 +13,8 @@ class Client < User
     false
   end
 
+  def waiter?
+    false
+  end
+
 end

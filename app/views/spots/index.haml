@@ -29,7 +29,7 @@
     %h1
       You have currently
       %span.label.label-default= my_spots.count
-      spots
+      = 'spot'.pluralize(my_spots.count)
     .row
       - my_spots.each do |s|
         .col-xs-12.col-sm-6
