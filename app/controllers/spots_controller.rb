@@ -7,18 +7,6 @@ class SpotsController < ApplicationController
 
   expose (:my_spot) { Spot.where(client_id: current_user.id) }
 
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
   def create
     if spot.save
       redirect_to spot, notice: 'Spot was successfully created.'
@@ -37,6 +25,7 @@ class SpotsController < ApplicationController
 
   def destroy
     spot.destroy
+    redirect_to spots_path
   end
 
   def assign_to_client

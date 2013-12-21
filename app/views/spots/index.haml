@@ -1,7 +1,7 @@
 .container
   = "My id: #{current_user.id}"
   - my_spot.each do |s|
-    = s.name
+    = "spot: #{s.name}"
   .row
     .col-xs-12
       %h1 All spots
@@ -26,7 +26,7 @@
                   = link_to 'Edit', edit_spot_path(s), class: 'btn btn-default pull-right'
                   = link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
                 - else
-                  = link_to 'I want to join!', join_spot_path, method: :post, class: 'btn btn-default pull-right'
+                  = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right'
   .row.admin-table
     .col-xs-12
       = link_to 'New Spot', new_spot_path, class: 'btn btn-default'

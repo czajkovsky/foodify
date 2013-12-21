@@ -7,8 +7,8 @@ Foodify::Application.routes.draw do
   resources :cooks, controller: 'users'
   resources :waiters, controller: 'users'
 
-
-  post '/join_spot', to: "spots#assign_to_client"
   root to: 'main#index'
+
+  put '/spots/:id/join(.:format)', to: 'spots#assign_to_client', as: 'join_spot'
 
 end
