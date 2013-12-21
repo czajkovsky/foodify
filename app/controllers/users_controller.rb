@@ -5,17 +5,11 @@ class UsersController < ApplicationController
 
   before_filter :is_worker?
 
-  def index
-  end
-
-  def show
-  end
-
   def update
     if user.save
-      redirect_to users_path
+      redirect_to user, notice: 'User was successfully updated.'
     else
-      render :new
+      render action: 'edit'
     end
   end
 

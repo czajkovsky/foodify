@@ -14,7 +14,8 @@
             %tr
               %td= u.email
               %td
-                / %span{ class: s.decorate.state_class }= s.state
+                %span.label.label-default= u.type
               %td
                 = link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
+                = link_to 'Show', u, class: 'btn btn-default pull-right'
                 = link_to 'Edit', edit_user_path(u), class: 'btn btn-default pull-right'
