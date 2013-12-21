@@ -5,7 +5,7 @@ class SpotsController < ApplicationController
   expose :spot
   expose :spots
 
-  expose (:my_spot) { Spot.where(client_id: current_user.id) }
+  expose (:my_spot) { Spot.where(client_id: current_user.id).first }
 
   def create
     if spot.save
@@ -29,9 +29,15 @@ class SpotsController < ApplicationController
   end
 
   def assign_to_client
-    spot.update_attributes(client_id: current_user.id, status: 'pending')
-    current_user.update_attributes(status: 'at_table')
-    redirect_to spots_path
+    if current_user.has_spot?
+      redirect_to spots_path, notice: "Sorry, you can't join more than one spot!"
+    elsif spot.client_id.present?
+      redirect_to spots_path, notice: 'Sorry, this spot is not free any more!'
+    else
+      spot.update_attributes(client_id: current_user.id, state: 'pending', balance: 0)
+      current_user.update_attributes(status: 'at_table')
+      redirect_to spots_path
+    end
   end
 
 end

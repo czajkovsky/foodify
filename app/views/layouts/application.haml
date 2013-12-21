@@ -9,4 +9,8 @@
     #controller_wrapper{ class: controller_name }
       #wrapper{ class: action_name }
         = render 'shared/menu'
+        - if notice.present?
+          .container
+            .row
+            .col-xs-12.alert.alert-info#notice= notice
         = yield
