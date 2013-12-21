@@ -1,10 +1,11 @@
 class SpotsController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :is_worker?, except: [:index, :show]
+  before_filter :is_worker?, only: [:create, :destroy]
 
   expose :spot
   expose :spots
+
+  expose (:my_spot) { Spot.where(client_id: current_user.id) }
 
   def index
   end
@@ -36,6 +37,11 @@ class SpotsController < ApplicationController
 
   def destroy
     spot.destroy
+  end
+
+  def assign_to_client
+    spot.update_attributes(client_id: current_user.id)
+    redirect_to spots_path
   end
 
 end
