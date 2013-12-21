@@ -6,7 +6,7 @@
       = f.input :balance
   .row
     .col-xs-12.col-sm-6.col-md-5.col-lg-4
-      = f.input :client
+      = f.association :client, include_blank: false, label_method: lambda { |client| "#{client.email}" }, collection: Client.all
   .row
     .col-xs-12.col-sm-6.col-md-5.col-lg-4
       = f.input :state
