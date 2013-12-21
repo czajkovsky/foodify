@@ -12,7 +12,7 @@
       = f.input :state
   .row
     .col-xs-12.col-sm-6.col-md-5.col-lg-4
-      = f.input :waiter
+      = f.association :waiter, include_blank: false, label_method: lambda { |waiter| "#{waiter.email}" }, collection: Waiter.all
   .row
     .col-xs-12.col-sm-6.col-md-5.col-lg-4
       = f.input :name
