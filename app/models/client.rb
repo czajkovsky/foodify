@@ -4,4 +4,13 @@ class Client < User
   def has_spot?
     self.status != 'out'
   end
+
+  def client?
+    true
+  end
+
+  def worker?
+    false
+  end
+
 end

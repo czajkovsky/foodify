@@ -17,7 +17,7 @@
               %td
                 %span.label.label-default= u.type
               %td
-                = u.status
+                = u.status if u.client?
               %td
                 = link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
                 = link_to 'Show', u, class: 'btn btn-default pull-right'
