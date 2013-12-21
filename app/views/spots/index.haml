@@ -5,15 +5,15 @@
         %h3.panel-title= "Your spot: #{my_spot.name}"
       .panel-body
         .row
-          .col-xs-6
+          .col-xs-12.col-sm-6
             %ul.list-group
               %li.list-group-item
                 %strong Balance
                 = my_spot.balance
               %li.list-group-item
-                %strong Status
-                %span= my_spot.state
-          .col-xs-6
+                %strong State
+                %span{ class: my_spot.decorate.state_class }= my_spot.state
+          .col-xs-12.col-sm-6
             .list-group
               = link_to 'New order', '#', class: 'list-group-item'
               = link_to 'Finish & Pay', '#', class: 'list-group-item'
