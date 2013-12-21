@@ -17,7 +17,7 @@
             - if my_spot.decorate.has_waiter?
               .list-group
                 = link_to 'New order', '#', class: 'list-group-item'
-                = link_to 'Finish & Pay', '#', class: 'list-group-item'
+                = link_to 'Finish', close_spot_path(my_spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }
             - else
               .list-group
                 = link_to "I don't want to wait! Close my spot", close_spot_path(my_spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }

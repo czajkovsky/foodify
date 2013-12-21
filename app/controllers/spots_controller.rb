@@ -32,9 +32,15 @@ class SpotsController < ApplicationController
     if !current_user.has_spot?
       redirect_to spots_path, notice: "Sorry, you don't have any open spot!"
     else
-      spot.update_attributes(client_id: nil, state: 'free', balance: 0)
-      current_user.update_attributes(status: 'out')
-      redirect_to spots_path, notice: "Spot successfully closed."
+      if spot.payed?
+        spot.update_attributes(client_id: nil, state: 'free', balance: 0, waiter_id: nil)
+        current_user.update_attributes(status: 'out')
+        redirect_to spots_path, notice: "Thanks for your visit!"
+      else
+        spot.update_attributes(state: 'finished')
+        current_user.update_attributes(status: 'want_to_pay')
+        redirect_to spots_path, notice: "Thanks! Please wait for waiter and prepare #{spot.balance} EUR."
+      end
     end
   end
 

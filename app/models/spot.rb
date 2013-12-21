@@ -15,4 +15,8 @@ class Spot < ActiveRecord::Base
     self.state == 'pending'
   end
 
+  def payed?
+    self.balance == 0
+  end
+
 end
