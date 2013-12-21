@@ -1,10 +1,20 @@
 .container
   .row
-    .col-xs-12.border-bottom.admin-table
-      - users.each do |u|
-        .row.border-top
-          .col-xs-6
-            %p.bold= u.email
-          .col-xs-6
-            = link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
-            = link_to 'Edit', edit_user_path(u), class: 'btn btn-default pull-right'
+    .col-xs-12
+      %h1 All users
+  .row
+    .col-xs-12
+      %table.table.table-striped.table-responsive
+        %thead
+          %th Email
+          %th Type
+          %th Actions
+        %tbody.table-hover
+          - users.each do |u|
+            %tr
+              %td= u.email
+              %td
+                / %span{ class: s.decorate.state_class }= s.state
+              %td
+                = link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
+                = link_to 'Edit', edit_user_path(u), class: 'btn btn-default pull-right'
