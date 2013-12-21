@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def is_worker?
     if !current_user.present? or !current_user.worker?
-      redirect_to 'http://www.google.com'
+      redirect_to no_privileges_path
     end
   end
 

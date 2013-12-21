@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
   expose :item
   expose :items
 
+  before_filter :is_worker?, except: [:index, :show]
+
   def create
     if item.save
       redirect_to item, notice: 'Item was successfully created.'
