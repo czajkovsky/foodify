@@ -49,9 +49,7 @@
                   = link_to 'Edit', edit_spot_path(s), class: 'btn btn-default pull-right'
                   = link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
                 - else
-                  - if current_user.has_spot?
-                    = link_to 'I want this spot!', '#', class: 'btn btn-default pull-right', disabled: true
-                  - else
+                  - if !current_user.has_spot? and !s.has_client?
                     = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right'
 
   - if current_worker?

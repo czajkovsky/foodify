@@ -3,6 +3,8 @@ class Spot < ActiveRecord::Base
   belongs_to :waiter
   belongs_to :client
 
-  STATES = ['free', 'in_use', 'finished'].freeze
+  def has_client?
+    self.client.present?
+  end
 
 end
