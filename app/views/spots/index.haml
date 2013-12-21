@@ -45,6 +45,7 @@
                     = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right', disabled: true
                   - else
                     = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right', disabled: true
-  .row.admin-table
-    .col-xs-12
-      = link_to 'New Spot', new_spot_path, class: 'btn btn-default'
+  - if current_worker?
+    .row.admin-table
+      .col-xs-12
+        = link_to 'New Spot', new_spot_path, class: 'btn btn-default'
