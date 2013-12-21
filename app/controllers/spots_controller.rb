@@ -28,6 +28,16 @@ class SpotsController < ApplicationController
     redirect_to spots_path
   end
 
+  def close
+    if !current_user.has_spot?
+      redirect_to spots_path, notice: "Sorry, you don't have any open spot!"
+    else
+      spot.update_attributes(client_id: nil, state: 'free', balance: 0)
+      current_user.update_attributes(status: 'out')
+      redirect_to spots_path, notice: "Spot successfully closed."
+    end
+  end
+
   def assign_to_client
     if current_user.has_spot?
       redirect_to spots_path, notice: "Sorry, you can't join more than one spot!"
@@ -36,8 +46,7 @@ class SpotsController < ApplicationController
     else
       spot.update_attributes(client_id: current_user.id, state: 'pending', balance: 0)
       current_user.update_attributes(status: 'at_table')
-      redirect_to spots_path
+      redirect_to spots_path, notice: 'This spot is yours!'
     end
   end
-
 end

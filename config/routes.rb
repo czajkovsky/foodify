@@ -10,5 +10,6 @@ Foodify::Application.routes.draw do
   root to: 'main#index'
 
   put '/spots/:id/join(.:format)', to: 'spots#assign_to_client', as: 'join_spot'
+  put '/spots/:id/close(.:format)', to: 'spots#close', as: 'close_spot'
 
 end

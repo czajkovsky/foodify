@@ -14,9 +14,17 @@
                 %strong State
                 %span{ class: my_spot.decorate.state_class }= my_spot.state
           .col-xs-12.col-sm-6
-            .list-group
-              = link_to 'New order', '#', class: 'list-group-item'
-              = link_to 'Finish & Pay', '#', class: 'list-group-item'
+            - if my_spot.decorate.has_waiter?
+              .list-group
+                = link_to 'New order', '#', class: 'list-group-item'
+                = link_to 'Finish & Pay', '#', class: 'list-group-item'
+            - else
+              .list-group
+                = link_to "I don't want to wait! Close my spot", close_spot_path(my_spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }
+              .panel.panel-warning
+                .panel-heading
+                  %h3.panel-title Why I can't make oders?
+                .panel-body Please wait for waiter assignment
   .row
     .col-xs-12
       %h1 All spots
@@ -42,9 +50,10 @@
                   = link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
                 - else
                   - if current_user.has_spot?
-                    = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right', disabled: true
+                    = link_to 'I want this spot!', '#', class: 'btn btn-default pull-right', disabled: true
                   - else
-                    = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right', disabled: true
+                    = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right'
+
   - if current_worker?
     .row.admin-table
       .col-xs-12
