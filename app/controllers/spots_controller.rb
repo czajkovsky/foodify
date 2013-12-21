@@ -6,6 +6,7 @@ class SpotsController < ApplicationController
   expose :spots
 
   expose (:my_spot) { Spot.where(client_id: current_user.id).first }
+  expose (:my_spots) { Spot.where(waiter_id: current_user.id) }
 
   def create
     if spot.save

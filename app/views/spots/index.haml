@@ -25,6 +25,22 @@
                 .panel-heading
                   %h3.panel-title Why I can't make oders?
                 .panel-body Please wait for waiter assignment
+  - if current_waiter?
+    %h1
+      You have currently
+      %span.label.label-default= my_spots.count
+      spots
+    .row
+      - my_spots.each do |s|
+        .col-xs-12.col-sm-6
+          .panel{ class: s.decorate.panel_class }
+            .panel-heading
+              %h3.panel-title= s.name
+            .panel-body
+              %ul.list-group
+                %li.list-group-item
+                  %strong Balance
+                  = s.balance
   .row
     .col-xs-12
       %h1 All spots
