@@ -14,4 +14,12 @@ class SpotDecorator < Draper::Decorator
     object.waiter.try(:email) || 'No waiter at this spot'
   end
 
+  def has_client?
+    object.client.present?
+  end
+
+  def has_waiter?
+    object.waiter.present?
+  end
+
 end
