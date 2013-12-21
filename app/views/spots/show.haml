@@ -12,10 +12,10 @@
       %ul.list-group
         %li.list-group-item
           %strong Client:
-          = spot.client.email
+          = spot.decorate.current_client
         %li.list-group-item
           %strong Waiter:
-          = spot.waiter.email
+          = spot.decorate.current_waiter
         %li.list-group-item
           %strong Balance:
           = spot.balance
