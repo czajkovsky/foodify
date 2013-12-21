@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-xs-12
+      %h1 All items
+  .row
+    .col-xs-12
+      %table.table.table-striped.table-responsive
+        %thead
+          %th Name
+          %th Price
+          %th Actions
+        %tbody.table-hover
+          - items.each do |i|
+            %tr
+              %td= i.name
+              %td= i.price
+              %td
+                = link_to 'Show', i, class: 'btn btn-default pull-right'
+                = link_to 'Edit', edit_item_path(i), class: 'btn btn-default pull-right'
+                = link_to 'Destroy', i, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
+  .row.admin-table
+    .col-xs-12
+      = link_to 'New item', new_item_path, class: 'btn btn-default'

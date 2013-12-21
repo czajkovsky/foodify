@@ -1,11 +1,15 @@
 Foodify::Application.routes.draw do
 
+  resources :items
+
+
   devise_for :users
   resources :users
   resources :clients, controller: 'users'
   resources :spots
   resources :cooks, controller: 'users'
   resources :waiters, controller: 'users'
+  resources :items
 
   root to: 'main#index'
 
