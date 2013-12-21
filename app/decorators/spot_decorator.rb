@@ -2,7 +2,7 @@ class SpotDecorator < Draper::Decorator
   delegate_all
 
   def state_class
-    classes = { 'free' => 'success', 'pending' => 'info', 'finished' => 'danger' }
+    classes = { 'free' => 'success', 'pending' => 'info', 'finished' => 'danger', 'handled' => 'primary' }
     "label label-#{classes[object.state.to_s]}"
   end
 

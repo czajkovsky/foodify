@@ -49,4 +49,15 @@ class SpotsController < ApplicationController
       redirect_to spots_path, notice: 'This spot is yours!'
     end
   end
+
+  def handle
+    if spot.has_waiter?
+      redirect_to spots_path, notice: "Sorry, this spot is already handled"
+    elsif !spot.pending?
+      redirect_to spots_path, notice: "Sorry, this spot is not pending!"
+    else
+      spot.update_attributes(waiter_id: current_user.id, state: 'handled', balance: 0)
+      redirect_to spots_path, notice: "Thanks for taking care of this!"
+    end
+  end
 end

@@ -7,4 +7,12 @@ class Spot < ActiveRecord::Base
     self.client.present?
   end
 
+  def has_waiter?
+    self.waiter.present?
+  end
+
+  def pending?
+    self.state == 'pending'
+  end
+
 end
