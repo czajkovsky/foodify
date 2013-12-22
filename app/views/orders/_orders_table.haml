@@ -1,29 +1,19 @@
-.container
-  .row
-    .col-xs-12
-      %h1
-        %span.label.label-default= orders.count
-        = "order".pluralize(orders.count)
-  .row
-    .col-xs-12
-      %table.table.table-striped.table-responsive
-        %thead
-          %th Id
-          %th State
-          %th Client
-          %th Waiter
-          %th Cook
-          %th Amount
-          %th Actions
-        %tbody.table-hover
-          - orders.each do |o|
-            %tr
-              %td= o.id
-              %td
-                %span.label.label-default= o.state
-              %td= o.client_id
-              %td= o.waiter_id
-              %td= o.cook_id
-              %td= o.amount
-              %td
-                = link_to 'Cook', cook_order_path(o), method: :put, class: 'btn btn-default'
+.row
+  .col-xs-12
+    %table.table.table-striped.table-responsive
+      %thead
+        %th Id
+        %th State
+        %th Amount
+        %th Actions
+      %tbody.table-hover
+        - orders.each do |o|
+          %tr
+            %td= o.id
+            %td
+              %span.label.label-default= o.state
+            %td= o.amount
+            %td
+              = link_to 'Show', '#', class: 'btn btn-default pull-right'
+              - if o.ready_to_cook?
+                = link_to 'Cook', cook_order_path(o), method: :put, class: 'btn btn-default pull-right'

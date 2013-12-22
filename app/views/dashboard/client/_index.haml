@@ -1,0 +1,5 @@
+- if current_user.has_spot?
+  = render partial: 'dashboard/client/spot', locals: { spot: client_spot }
+  = render partial: 'dashboard/client/orders', locals: { spot: client_spot }
+- else
+  = render partial: 'spots/spots_table', locals: { spots: spots }

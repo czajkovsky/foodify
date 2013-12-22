@@ -1,1 +1,7 @@
-= render partial: 'orders_table', locals: { orders: orders }
+.container
+  .row
+    .col-xs-12
+      %h1
+        %span.label.label-default= orders.count
+        = "order".pluralize(orders.count)
+  = render partial: 'orders_table', locals: { orders: orders }

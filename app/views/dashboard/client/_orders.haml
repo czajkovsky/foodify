@@ -1,0 +1,9 @@
+- if client_orders.count > 0
+  .container
+    .row
+      .col-xs-12
+        %h1
+          You have
+          %span.label.label-default= client_orders.count
+          = "order".pluralize(client_orders.count)
+    = render partial: 'orders/orders_table', locals: { orders: client_orders }

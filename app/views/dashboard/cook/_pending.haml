@@ -1,0 +1,9 @@
+- if orders.count > 0
+  .container
+    .row
+      .col-xs-12
+        %h1
+          %span.label.label-default= orders.count
+          pending
+          = "order".pluralize(orders.count)
+    = render partial: 'orders/orders_table', locals: { orders: orders }

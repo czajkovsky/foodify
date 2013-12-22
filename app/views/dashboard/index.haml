@@ -1,13 +1,7 @@
 - if current_client?
-  - if current_user.has_spot?
-    = render partial: 'client', locals: { spot: client_spot }
-    = render partial: 'orders/orders_table', locals: { orders: client_orders }
-  - else
-    = render partial: 'spots/spots_table', locals: { spots: spots }
+  = render 'dashboard/client/index'
 - else
   - if current_waiter?
-    = render partial: 'waiter', locals: { spots: waiter_spots }
-    = render partial: 'spots/spots_table', locals: { spots: waiter_pending_spots }
+    = render 'dashboard/waiter/index'
   - if current_cook?
-    = render partial: 'cook', locals: { orders: cook_orders }
-    = render partial: 'orders/orders_table', locals: { orders: cook_pending_orders }
+    = render 'dashboard/cook/index'
