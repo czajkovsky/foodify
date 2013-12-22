@@ -1,6 +1,7 @@
 .container
   .row
-    .col-xs-12
+    .col-xs-12.col-sm-6
       %h2
         = "Order ##{order.id}"
         %span.label.label-default= order.state
+      = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default float-right'

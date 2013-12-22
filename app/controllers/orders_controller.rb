@@ -25,6 +25,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def send_to_kitchen
+    order.update_attributes(state: 'pending')
+    redirect_to spots_path, notice: "Order ##{order.id} sent to kitchen!"
+  end
+
   def destroy
     order.destroy
     redirect_to spot_path(spot)
