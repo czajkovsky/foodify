@@ -1,6 +1,6 @@
 .container
-  .col-xs-12.col-sm-10.col-sm-offest-1.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    .jumbotron
-      %h2 No privileges
-      %p Please log in
-      %p= link_to 'Back to main page', root_path, class: 'btn btn-primary btn-lg'
+  .col-xs-12.col-sm-10.col-sm-offest-1.col-md-8.col-md-offset-2
+    .alert.alert-danger
+      %strong Oh man...!
+      Sorry, you don't have access here...
+      = link_to 'Back to main page', root_path, class: 'alert-link'

@@ -2,7 +2,6 @@
   .row
     .col-xs-12
       %h1
-        %span.label.label-default= orders.count
-        pending
-        = "order".pluralize(orders.count)
-  = render partial: 'orders_table', locals: { orders: orders }
+        %span.label.label-default= newest_orders.count
+        = "order".pluralize(newest_orders.count)
+  = render partial: 'orders_table', locals: { orders: newest_orders }
