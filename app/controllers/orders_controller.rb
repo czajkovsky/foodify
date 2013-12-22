@@ -9,6 +9,11 @@ class OrdersController < ApplicationController
   def kitchen
   end
 
+  def cook
+    order.update_attributes(state: 'cooking')
+    redirect_to root_path, notice: "You're cooking Order ##{order.id}"
+  end
+
   def new
     if can_order?(spot.client_id)
       new_order = Order.new(

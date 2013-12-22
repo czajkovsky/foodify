@@ -15,10 +15,12 @@ Foodify::Application.routes.draw do
   get 'no_privileges', to: 'pages#no_privileges'
   get 'kitchen', to: 'orders#kitchen'
 
+
   put '/spots/:id/join(.:format)', to: 'spots#assign_to_client', as: 'join_spot'
   put '/spots/:id/close(.:format)', to: 'spots#close', as: 'close_spot'
   put '/spots/:id/handle(.:format)', to: 'spots#handle', as: 'handle_spot'
 
+  put '/orders/:id/cook(.:format)', to: 'orders#cook', as: 'cook_order'
   put '/spots/:spot_id/orders/:id/send(.:format)', to: 'orders#send_to_kitchen', as: 'send_order'
 
 end

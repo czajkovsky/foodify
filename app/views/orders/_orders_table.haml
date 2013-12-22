@@ -14,6 +14,7 @@
           %th Waiter
           %th Cook
           %th Amount
+          %th Actions
         %tbody.table-hover
           - orders.each do |o|
             %tr
@@ -24,3 +25,5 @@
               %td= o.waiter_id
               %td= o.cook_id
               %td= o.amount
+              %td
+                = link_to 'Cook', cook_order_path(o), method: :put, class: 'btn btn-default'
