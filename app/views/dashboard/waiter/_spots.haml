@@ -17,17 +17,4 @@
                 %strong Balance
                 = s.balance
               %li.list-group-item
-                %table.table.table-striped.table-responsive
-                  %thead
-                    %th #id
-                    %th State
-                    %th Actions
-                  %tbody.table-hover
-                    %h4 Orders
-                    - s.orders.each do |so|
-                      %tr
-                        %td= so.id
-                        %td
-                          %span.label.label-default= so.state
-                        %td
-                          = link_to 'Deliver', '#', class: 'btn btn-default pull-right'
+                = render partial: 'orders/orders_table', locals: { orders: s.orders }
