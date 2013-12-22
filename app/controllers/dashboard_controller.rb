@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
   expose (:waiter_spots) { Spot.where(waiter_id: current_user.id) }
 
   expose (:cook_pending_orders) { Order.where(state: 'pending') }
+  expose (:cook_orders) { Order.where(cook_id: current_user.id) }
 
   expose (:spots)
   expose (:orders)

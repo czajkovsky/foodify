@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def cook
-    order.update_attributes(state: 'cooking')
+    order.update_attributes(state: 'cooking', cook_id: current_user.id)
     redirect_to root_path, notice: "You're cooking Order ##{order.id}"
   end
 
