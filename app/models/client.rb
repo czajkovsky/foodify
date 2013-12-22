@@ -17,4 +17,8 @@ class Client < User
     false
   end
 
+  def cook?
+    false
+  end
+
 end

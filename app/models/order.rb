@@ -14,4 +14,7 @@ class Order < ActiveRecord::Base
     self.state == 'cooking' && self.cook_id == id
   end
 
+  def label_class
+  end
+
 end
