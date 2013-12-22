@@ -10,18 +10,30 @@ class OrdersController < ApplicationController
   end
 
   def cook
-    order.update_attributes(state: 'cooking', cook_id: current_user.id)
-    redirect_to root_path, notice: "You're cooking Order ##{order.id}"
+    if order.state == 'pending'
+      order.update_attributes(state: 'cooking', cook_id: current_user.id)
+      redirect_to root_path, notice: "You're cooking Order ##{order.id}"
+    else
+      redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'Pending' state!"
+    end
   end
 
   def finish
-    order.update_attributes(state: 'finished', cook_id: nil)
-    redirect_to root_path, notice: "Thanks man!"
+    if order.state == 'cooking' and order.cook_id == current_user.id
+      order.update_attributes(state: 'finished', cook_id: nil)
+      redirect_to root_path, notice: "Thanks man!"
+    else
+      redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'Cooking' state or you weren'r the right cook!"
+    end
   end
 
   def deliver
-    order.update_attributes(state: 'delivered')
-    redirect_to root_path, notice: "Thanks man!"
+    if order.state == 'finished'
+      order.update_attributes(state: 'delivered')
+      redirect_to root_path, notice: "Thanks man!"
+    else
+      redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'Finished' state!"
+    end
   end
 
   def new
@@ -41,8 +53,12 @@ class OrdersController < ApplicationController
   end
 
   def send_to_kitchen
-    order.update_attributes(state: 'pending')
-    redirect_to root_path, notice: "Order ##{order.id} sent to kitchen!"
+    if order.state == 'new'
+      order.update_attributes(state: 'pending')
+      redirect_to root_path, notice: "Order ##{order.id} sent to kitchen!"
+    else
+      redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'New' state!"
+    end
   end
 
   def destroy
