@@ -3,10 +3,10 @@
     .col-xs-12
       %h1
         You have currently
-        %span.label.label-default= my_spots.count
-        = 'spot'.pluralize(my_spots.count)
+        %span.label.label-default= spots.count
+        = 'spot'.pluralize(spots.count)
   .row
-    - my_spots.each do |s|
+    - spots.each do |s|
       .col-xs-12.col-sm-6
         .panel{ class: s.decorate.panel_class }
           .panel-heading

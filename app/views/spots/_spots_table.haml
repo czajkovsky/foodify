@@ -1,27 +1,28 @@
 .container
-  .row
-    .col-xs-12
-      %h1 All spots
-  .row
-    .col-xs-12
-      %table.table.table-striped.table-responsive
-        %thead
-          %th Name
-          %th State
-          %th Actions
-        %tbody.table-hover
-          - spots.each do |s|
-            %tr
-              %td= s.name
-              %td
-                %span{ class: s.decorate.state_class }= s.state
-              %td
-                - if current_worker?
-                  - if current_waiter? and s.pending?
-                    = link_to "I'll handle this!", handle_spot_path(s), method: :put, class: 'btn btn-default pull-right'
-                  = link_to 'Show', s, class: 'btn btn-default pull-right'
-                  = link_to 'Edit', edit_spot_path(s), class: 'btn btn-default pull-right'
-                  = link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
-                - else
-                  - if !current_user.has_spot? and !s.has_client?
-                    = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right'
+  - if spots.count > 0
+    .row
+      .col-xs-12
+        %h1 Spots
+    .row
+      .col-xs-12
+        %table.table.table-striped.table-responsive
+          %thead
+            %th Name
+            %th State
+            %th Actions
+          %tbody.table-hover
+            - spots.each do |s|
+              %tr
+                %td= s.name
+                %td
+                  %span{ class: s.decorate.state_class }= s.state
+                %td
+                  - if current_worker?
+                    - if current_waiter? and s.pending?
+                      = link_to "I'll handle this!", handle_spot_path(s), method: :put, class: 'btn btn-default pull-right'
+                    = link_to 'Show', s, class: 'btn btn-default pull-right'
+                    = link_to 'Edit', edit_spot_path(s), class: 'btn btn-default pull-right'
+                    = link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
+                  - else
+                    - if !current_user.has_spot? and !s.has_client?
+                      = link_to 'I want this spot!', join_spot_path(s), method: :put, class: 'btn btn-default pull-right'
