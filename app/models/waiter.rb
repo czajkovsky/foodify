@@ -9,4 +9,8 @@ class Waiter < Worker
     true
   end
 
+  def label_class
+    'primary'
+  end
+
 end

@@ -21,4 +21,13 @@ class Client < User
     false
   end
 
+  def label_class
+    'warning'
+  end
+
+  def state_class
+    classes = { 'out' => 'default', 'at_table' => 'success', 'finished' => 'warning' }
+    classes[self.status.to_s]
+  end
+
 end

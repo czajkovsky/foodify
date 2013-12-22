@@ -11,7 +11,7 @@
           %tr
             %td= o.id
             %td
-              %span.label.label-default= o.state
+              %span.label{ class: "label-#{o.label_class}" }= o.state
             %td= o.amount
             %td
               = link_to 'Show', '#', class: 'btn btn-default pull-right'

@@ -15,6 +15,8 @@ class Order < ActiveRecord::Base
   end
 
   def label_class
+    classes = { 'new' => 'info', 'pending' => 'danger', 'cooking' => 'primary', 'finished' => 'warning', 'delivered' => 'success' }
+    classes[self.state.to_s]
   end
 
 end

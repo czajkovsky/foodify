@@ -8,4 +8,8 @@ class Cook < Worker
     false
   end
 
+  def label_class
+    'info'
+  end
+
 end

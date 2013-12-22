@@ -15,9 +15,10 @@
             %tr
               %td= u.email
               %td
-                %span.label.label-default= u.type
+                %span.label{ class: "label-#{u.label_class}" }= u.type
               %td
-                = u.status if u.client?
+                - if u.client?
+                  %span.label{ class: "label-#{u.state_class}" }= u.status
               %td
                 = link_to 'Delete', u, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'
                 = link_to 'Show', u, class: 'btn btn-default pull-right'
