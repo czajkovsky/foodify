@@ -33,6 +33,7 @@ class SpotsController < ApplicationController
       if spot.payed?
         spot.update_attributes(client_id: nil, state: 'free', balance: 0, waiter_id: nil)
         current_user.update_attributes(status: 'out')
+        amount = delete_all_orders(spot)
         redirect_to root_path, notice: "Thanks for your visit!"
       else
         spot.update_attributes(state: 'finished')
@@ -64,4 +65,11 @@ class SpotsController < ApplicationController
       redirect_to root_path, notice: "Thanks for taking care of this!"
     end
   end
+
+private
+
+  def delete_all_orders spot
+    Order.where(spot_id: spot).delete_all
+  end
+
 end
