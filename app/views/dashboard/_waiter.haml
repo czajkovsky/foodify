@@ -16,3 +16,17 @@
               %li.list-group-item
                 %strong Balance
                 = s.balance
+              %li.list-group-item
+                %table.table.table-striped.table-responsive
+                  %thead
+                    %th #id
+                    %th State
+                    %th Actions
+                  %tbody.table-hover
+                    %h4 Orders
+                    - s.orders.each do |so|
+                      %tr
+                        %td= so.id
+                        %td
+                          %span.label.label-default= so.state
+                        %td
