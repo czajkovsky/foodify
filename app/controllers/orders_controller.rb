@@ -21,13 +21,13 @@ class OrdersController < ApplicationController
       new_order.save
       redirect_to spot_order_path(spot, new_order)
     else
-      redirect_to spots_path, notice: 'Sorry, you have some new (not sent to kitchen) orders.'
+      redirect_to root_path, notice: 'Sorry, you have some new (not sent to kitchen) orders.'
     end
   end
 
   def send_to_kitchen
     order.update_attributes(state: 'pending')
-    redirect_to spots_path, notice: "Order ##{order.id} sent to kitchen!"
+    redirect_to root_path, notice: "Order ##{order.id} sent to kitchen!"
   end
 
   def destroy

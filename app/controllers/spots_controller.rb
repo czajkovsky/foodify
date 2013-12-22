@@ -1,12 +1,9 @@
 class SpotsController < ApplicationController
 
-  before_filter :is_worker?, only: [:create, :destroy]
+  before_filter :is_worker?, except: [:close, :assign_to_client]
 
   expose :spot
   expose :spots
-
-  expose (:my_spot) { Spot.where(client_id: current_user.id).first }
-  expose (:my_spots) { Spot.where(waiter_id: current_user.id) }
 
   def create
     if spot.save
@@ -31,40 +28,40 @@ class SpotsController < ApplicationController
 
   def close
     if !current_user.has_spot?
-      redirect_to spots_path, notice: "Sorry, you don't have any open spot!"
+      redirect_to root_path, notice: "Sorry, you don't have any open spot!"
     else
       if spot.payed?
         spot.update_attributes(client_id: nil, state: 'free', balance: 0, waiter_id: nil)
         current_user.update_attributes(status: 'out')
-        redirect_to spots_path, notice: "Thanks for your visit!"
+        redirect_to root_path, notice: "Thanks for your visit!"
       else
         spot.update_attributes(state: 'finished')
         current_user.update_attributes(status: 'want_to_pay')
-        redirect_to spots_path, notice: "Thanks! Please wait for waiter and prepare #{spot.balance} EUR."
+        redirect_to root_path, notice: "Thanks! Please wait for waiter and prepare #{spot.balance} EUR."
       end
     end
   end
 
   def assign_to_client
     if current_user.has_spot?
-      redirect_to spots_path, notice: "Sorry, you can't join more than one spot!"
+      redirect_to root_path, notice: "Sorry, you can't join more than one spot!"
     elsif spot.client_id.present?
-      redirect_to spots_path, notice: 'Sorry, this spot is not free any more!'
+      redirect_to root_path, notice: 'Sorry, this spot is not free any more!'
     else
       spot.update_attributes(client_id: current_user.id, state: 'pending', balance: 0)
       current_user.update_attributes(status: 'at_table')
-      redirect_to spots_path, notice: 'This spot is yours!'
+      redirect_to root_path, notice: 'This spot is yours!'
     end
   end
 
   def handle
     if spot.has_waiter?
-      redirect_to spots_path, notice: "Sorry, this spot is already handled"
+      redirect_to root_path, notice: "Sorry, this spot is already handled"
     elsif !spot.pending?
-      redirect_to spots_path, notice: "Sorry, this spot is not pending!"
+      redirect_to root_path, notice: "Sorry, this spot is not pending!"
     else
       spot.update_attributes(waiter_id: current_user.id, state: 'handled', balance: 0)
-      redirect_to spots_path, notice: "Thanks for taking care of this!"
+      redirect_to root_path, notice: "Thanks for taking care of this!"
     end
   end
 end

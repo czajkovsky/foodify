@@ -10,7 +10,7 @@ Foodify::Application.routes.draw do
   resources :waiters, controller: 'users'
   resources :items
 
-  root to: 'main#index'
+  root to: 'dashboard#index'
 
   get 'no_privileges', to: 'pages#no_privileges'
 
