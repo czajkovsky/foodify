@@ -1,0 +1,27 @@
+.container
+  .row
+    .col-xs-12
+      %h1
+        We have
+        %span.label.label-default= orders.count
+        = "order".pluralize(orders.count)
+  .row
+    .col-xs-12
+      %table.table.table-striped.table-responsive
+        %thead
+          %th Id
+          %th State
+          %th Client
+          %th Waiter
+          %th Cook
+          %th Amount
+        %tbody.table-hover
+          - orders.each do |o|
+            %tr
+              %td= o.id
+              %td
+                %span.label.label-default= o.state
+              %td= o.client_id
+              %td= o.waiter_id
+              %td= o.cook_id
+              %td= o.amount

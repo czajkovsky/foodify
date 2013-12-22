@@ -18,4 +18,6 @@ Foodify::Application.routes.draw do
   put '/spots/:id/close(.:format)', to: 'spots#close', as: 'close_spot'
   put '/spots/:id/handle(.:format)', to: 'spots#handle', as: 'handle_spot'
 
+  get 'kitchen', to: 'orders#kitchen'
+
 end
