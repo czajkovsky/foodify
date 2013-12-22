@@ -6,4 +6,12 @@ class Order < ActiveRecord::Base
     self.state == 'pending'
   end
 
+  def ready_to_deliver? id
+    self.state == 'finished' && self.waiter_id == id
+  end
+
+  def ready_to_finish? id
+    self.state == 'cooking' && self.cook_id == id
+  end
+
 end

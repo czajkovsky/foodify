@@ -15,5 +15,9 @@
             %td= o.amount
             %td
               = link_to 'Show', '#', class: 'btn btn-default pull-right'
-              - if o.ready_to_cook?
+              - if o.ready_to_cook? && current_cook?
                 = link_to 'Cook', cook_order_path(o), method: :put, class: 'btn btn-default pull-right'
+              - if o.ready_to_deliver?(current_user.id) && current_waiter?
+                = link_to 'Deliver', '#', method: :put, class: 'btn btn-default pull-right'
+              - if o.ready_to_finish?(current_user.id) && current_cook?
+                = link_to 'Finish', '#', method: :put, class: 'btn btn-default pull-right'
