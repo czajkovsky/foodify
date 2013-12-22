@@ -13,6 +13,7 @@ Foodify::Application.routes.draw do
   root to: 'dashboard#index'
 
   get 'no_privileges', to: 'pages#no_privileges'
+  get 'kitchen', to: 'orders#kitchen'
 
   put '/spots/:id/join(.:format)', to: 'spots#assign_to_client', as: 'join_spot'
   put '/spots/:id/close(.:format)', to: 'spots#close', as: 'close_spot'
