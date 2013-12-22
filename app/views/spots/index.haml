@@ -16,7 +16,7 @@
           .col-xs-12.col-sm-6
             - if my_spot.decorate.has_waiter?
               .list-group
-                = link_to 'New order', '#', class: 'list-group-item'
+                = link_to 'New order', new_spot_order_path(my_spot), class: 'list-group-item'
                 = link_to 'Finish', close_spot_path(my_spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }
             - else
               .list-group
