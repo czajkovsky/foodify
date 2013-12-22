@@ -1,0 +1,9 @@
+- if spots.count > 0
+  .container
+    .row
+      .col-xs-12
+        %h1
+          %span.label.label-default= spots.count
+          pending
+          = "spot".pluralize(orders.count)
+    = render partial: 'spots/spots_table', locals: { spots: spots }
