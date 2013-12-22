@@ -1,19 +1,5 @@
 = simple_form_for(spot) do |f|
   .row
-    .col-xs-12= f.error_notification
-  .row
-    .col-xs-12.col-sm-6.col-md-5.col-lg-4
-      = f.input :balance
-  .row
-    .col-xs-12.col-sm-6.col-md-5.col-lg-4
-      = f.association :client, include_blank: true, label_method: lambda { |client| "#{client.email}" }, collection: Client.all
-  .row
-    .col-xs-12.col-sm-6.col-md-5.col-lg-4
-      = f.input :state
-  .row
-    .col-xs-12.col-sm-6.col-md-5.col-lg-4
-      = f.association :waiter, include_blank: true, label_method: lambda { |waiter| "#{waiter.email}" }, collection: Waiter.all
-  .row
     .col-xs-12.col-sm-6.col-md-5.col-lg-4
       = f.input :name
   .row
