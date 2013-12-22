@@ -20,6 +20,4 @@ Foodify::Application.routes.draw do
 
   put '/spots/:spot_id/orders/:id/send(.:format)', to: 'orders#send_to_kitchen', as: 'send_order'
 
-  get 'kitchen', to: 'orders#kitchen'
-
 end

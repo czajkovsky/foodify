@@ -1,3 +1,4 @@
 = render partial: 'client' if current_client? && current_user.has_spot?
 = render partial: 'waiter' if current_waiter?
 = render partial: 'spots/spots_table'
+= render partial: 'orders/orders_table'
