@@ -7,3 +7,8 @@
           pending
           = "order".pluralize(orders.count)
     = render partial: 'orders/orders_table', locals: { orders: orders }
+- else
+  .container
+    .row
+      .col-xs-12
+        %h1 No pending orders? Take a rest!
