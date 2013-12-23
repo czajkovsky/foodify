@@ -5,7 +5,7 @@
         .panel-heading
           %h3.panel-title
             = "Order ##{order.id}"
-            %span.label.label-default= order.state
+            %span.label{ class: "label-#{order.label_class}" }= order.state
         .panel-body
           %ul.list-group
             %li.list-group-item
