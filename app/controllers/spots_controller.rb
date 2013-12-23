@@ -76,7 +76,9 @@ class SpotsController < ApplicationController
 private
 
   def delete_all_orders spot
-    Order.where(spot_id: spot).delete_all
+    Order.where(spot_id: spot).each do |order|
+      order.destroy
+    end
   end
 
 end
