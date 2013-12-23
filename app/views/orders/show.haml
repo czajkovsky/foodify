@@ -1,22 +1,31 @@
 .container
   .row
-    .col-xs-12.col-sm-6
-      %h2
-        = "Order ##{order.id}"
-        %span.label.label-default= order.state
-      = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default pull-right'
-  = order.positions.count
-  .row
-    .col-xs-12
-      %table.table.table-striped.table-responsive
-        %thead
-          %th Name
-          %th Price
-          %th Actions
-        %tbody.table-hover
-          - items.each do |i|
-            %tr
-              %td= i.name
-              %td= i.price
-              %td
-                = link_to 'Add item', add_position_path(spot, order, i), method: :post, class: 'btn btn-default pull-right'
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = "Order ##{order.id}"
+            %span.label.label-default= order.state
+        .panel-body
+          %ul.list-group
+            %li.list-group-item
+              %strong Balance
+              = order.current_amount
+          = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default with-margin'
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Menu
+        .panel-body
+          %table.table.table-striped.table-responsive
+            %thead
+              %th Name
+              %th Price
+              %th Actions
+            %tbody.table-hover
+              - items.each do |i|
+                %tr
+                  %td= i.name
+                  %td= i.price
+                  %td
+                    = link_to 'Add item', add_position_path(spot, order, i), method: :post, class: 'btn btn-default pull-right'

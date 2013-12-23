@@ -20,4 +20,12 @@ class Order < ActiveRecord::Base
     classes[self.state.to_s]
   end
 
+  def current_amount
+    sum = 0
+    self.positions.each do |p|
+      sum = sum + p.item(p.item_id).price
+    end
+    sum
+  end
+
 end

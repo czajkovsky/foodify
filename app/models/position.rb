@@ -4,4 +4,8 @@ class Position < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :order_id, :item_id
 
+  def item item_id
+    Item.where(id: item_id).first
+  end
+
 end

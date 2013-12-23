@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   expose :orders
   expose :items
   expose (:newest_orders) { Order.find(:all, order: 'id DESC') }
+  expose (:positions_in_order) { Position.where(order_id: order.id) }
 
   before_filter :is_worker?, only: [:kitchen]
 
