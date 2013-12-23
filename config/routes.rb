@@ -27,6 +27,8 @@ Foodify::Application.routes.draw do
   put '/orders/:id/deliver(.:format)', to: 'orders#deliver', as: 'deliver_order'
   put '/spots/:spot_id/orders/:id/send(.:format)', to: 'orders#send_to_kitchen', as: 'send_order'
 
+  get '/orders/:id(.:format)', to: 'orders#show_order', as: 'show_order'
+
   post '/spots/:spot_id/orders/:order_id/position/add/:item_id(.:format)', to: 'position#add', as: 'add_position'
 
 

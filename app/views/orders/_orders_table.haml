@@ -14,7 +14,7 @@
               %span.label{ class: "label-#{o.label_class}" }= o.state
             %td= number_to_currency(o.amount)
             %td
-              = link_to 'Show', '#', class: 'btn btn-default pull-right'
+              = link_to 'Show', show_order_path(o), class: 'btn btn-default pull-right'
               - if o.ready_to_cook? && current_cook?
                 = link_to 'Cook', cook_order_path(o), method: :put, class: 'btn btn-default pull-right'
               - if o.ready_to_deliver?(current_user.id) && current_waiter?

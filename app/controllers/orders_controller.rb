@@ -21,6 +21,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show_order
+    order_spot = Spot.where(id: order.spot_id).first
+    redirect_to spot_order_path(order_spot, order)
+  end
+
   def finish
     if order.state == 'cooking' and order.cook_id == current_user.id
       order.update_attributes(state: 'finished', cook_id: nil)
