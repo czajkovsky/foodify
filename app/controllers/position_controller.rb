@@ -14,4 +14,9 @@ class PositionController < ApplicationController
     redirect_to spot_order_path(spot, order), notice: "Added <strong>#{item.name}</strong>".html_safe
   end
 
+  def destroy
+    position.destroy
+    redirect_to spot_order_path(spot, order), notice: 'Position removed successfully!'
+  end
+
 end

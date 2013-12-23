@@ -66,7 +66,7 @@ class OrdersController < ApplicationController
 
   def destroy
     order.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: 'Order removed successfully!'
   end
 
 private

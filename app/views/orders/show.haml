@@ -24,11 +24,12 @@
               %th Price
               %th Actions
             %tbody.table-hover
-              - order.items.each do |i|
+              - order.positions.each do |po|
                 %tr
-                  %td= i.name
-                  %td= i.price
+                  %td= po.item(po.item_id).name
+                  %td= po.item(po.item_id).price
                   %td
+                    = link_to 'Remove', spot_order_position_path(spot, order, po), method: :delete, class: 'btn btn-default pull-right'
     .col-md-6
       .panel.panel-default
         .panel-heading
