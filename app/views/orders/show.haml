@@ -12,6 +12,7 @@
               %strong Balance
               = order.current_amount
           = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default with-margin'
+          = link_to 'Cancel', spot_order_path(spot), method: :delete, class: 'btn btn-default with-margin'
     .col-md-6
       .panel.panel-default
         .panel-heading

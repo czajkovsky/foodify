@@ -66,7 +66,7 @@ class OrdersController < ApplicationController
 
   def destroy
     order.destroy
-    redirect_to spot_path(spot)
+    redirect_to root_path
   end
 
 private
