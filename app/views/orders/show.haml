@@ -10,7 +10,7 @@
           %ul.list-group
             %li.list-group-item
               %strong Balance
-              = order.current_amount
+              = number_to_currency(order.current_amount)
           = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default with-margin'
           = link_to 'Cancel', spot_order_path(spot), method: :delete, class: 'btn btn-default with-margin'
       .panel.panel-default
@@ -27,7 +27,7 @@
               - order.positions.each do |po|
                 %tr
                   %td= po.item(po.item_id).name
-                  %td= po.item(po.item_id).price
+                  %td= number_to_currency(po.item(po.item_id).price)
                   %td
                     = link_to 'Remove', spot_order_position_path(spot, order, po), method: :delete, class: 'btn btn-default pull-right'
     .col-md-6
@@ -44,6 +44,6 @@
               - items.each do |i|
                 %tr
                   %td= i.name
-                  %td= i.price
+                  %td= number_to_currency(i.price)
                   %td
                     = link_to 'Add item', add_position_path(spot, order, i), method: :post, class: 'btn btn-default pull-right'

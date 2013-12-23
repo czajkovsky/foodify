@@ -16,6 +16,6 @@
         - if spot.decorate.has_client?
           %li.list-group-item
             %strong Balance:
-            = spot.balance
+            = number_to_currency(spot.balance)
       = link_to 'Back to spots', spots_path, class: 'btn btn-default with-margin'
       = link_to 'Edit', edit_spot_path(spot), class: 'btn btn-default'

@@ -10,7 +10,7 @@
         - items.each do |i|
           %tr
             %td= i.name
-            %td= i.price
+            %td= number_to_currency(i.price)
             %td
               - if current_worker?
                 = link_to 'Show', i, class: 'btn btn-default pull-right'

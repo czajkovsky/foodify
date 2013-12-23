@@ -15,7 +15,7 @@
             %ul.list-group
               %li.list-group-item
                 %strong Balance
-                = s.balance
+                = number_to_currency(s.balance)
               - if s.orders.count > 0
                 %li.list-group-item
                   = render partial: 'orders/orders_table', locals: { orders: s.orders }

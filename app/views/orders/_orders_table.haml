@@ -12,7 +12,7 @@
             %td= o.id
             %td
               %span.label{ class: "label-#{o.label_class}" }= o.state
-            %td= o.amount
+            %td= number_to_currency(o.amount)
             %td
               = link_to 'Show', '#', class: 'btn btn-default pull-right'
               - if o.ready_to_cook? && current_cook?
