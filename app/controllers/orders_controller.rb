@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
 
   def send_to_kitchen
     if order.state == 'new'
-      order.update_attributes(state: 'pending')
+      order.update_attributes(state: 'pending', amount: order.current_amount)
       redirect_to root_path, notice: "Order ##{order.id} sent to kitchen!"
     else
       redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'New' state!"
