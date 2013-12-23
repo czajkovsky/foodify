@@ -25,7 +25,8 @@ class Spot < ActiveRecord::Base
   end
 
   def balance
-    -self.orders.sum('amount')
+    balance = self.orders.sum('amount')
+    balance > 0 ? -balance : 0
   end
 
 end
