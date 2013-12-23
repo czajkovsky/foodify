@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131222191338) do
+ActiveRecord::Schema.define(:version => 20131223174103) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(:version => 20131222191338) do
   end
 
   add_index "orders", ["spot_id"], :name => "index_orders_on_spot_id"
+
+  create_table "positions", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "order_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "positions", ["item_id"], :name => "index_positions_on_item_id"
+  add_index "positions", ["order_id"], :name => "index_positions_on_order_id"
 
   create_table "spots", :force => true do |t|
     t.datetime "created_at",                     :null => false

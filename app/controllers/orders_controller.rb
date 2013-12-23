@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   expose :spot
   expose :order
   expose :orders
+  expose :items
   expose (:newest_orders) { Order.find(:all, order: 'id DESC') }
 
   before_filter :is_worker?, only: [:kitchen]

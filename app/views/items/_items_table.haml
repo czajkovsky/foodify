@@ -1,0 +1,18 @@
+.row
+  .col-xs-12
+    %table.table.table-striped.table-responsive
+      %thead
+        %th Name
+        %th Price
+        - if current_worker?
+          %th Actions
+      %tbody.table-hover
+        - items.each do |i|
+          %tr
+            %td= i.name
+            %td= i.price
+            %td
+              - if current_worker?
+                = link_to 'Show', i, class: 'btn btn-default pull-right'
+                = link_to 'Edit', edit_item_path(i), class: 'btn btn-default pull-right'
+                = link_to 'Destroy', i, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default pull-right'

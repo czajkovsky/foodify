@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   belongs_to :spot
+  has_many :positions
   attr_accessible :amount, :client_id, :cook_id, :state, :waiter_id, :spot_id
 
   def ready_to_cook?
