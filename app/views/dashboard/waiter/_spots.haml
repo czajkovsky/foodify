@@ -18,3 +18,4 @@
                 = s.balance
               %li.list-group-item
                 = render partial: 'orders/orders_table', locals: { orders: s.orders }
+            = link_to 'Close / accept payment', close_spot_path(s), method: :put, class: 'btn btn-default', data: { confirm: 'Are you sure?' }

@@ -27,19 +27,26 @@ class SpotsController < ApplicationController
   end
 
   def close
-    if !current_user.has_spot?
-      redirect_to root_path, notice: "Sorry, you don't have any open spot!"
-    else
-      if spot.payed?
-        spot.update_attributes(client_id: nil, state: 'free', balance: 0, waiter_id: nil)
-        current_user.update_attributes(status: 'out')
-        amount = delete_all_orders(spot)
-        redirect_to root_path, notice: "Thanks for your visit!"
+    if current_user.client?
+      if !current_user.has_spot?
+        redirect_to root_path, notice: "Sorry, you don't have any open spot!"
       else
-        spot.update_attributes(state: 'finished')
-        current_user.update_attributes(status: 'want_to_pay')
-        redirect_to root_path, notice: "Thanks! Please wait for waiter and prepare #{spot.balance} EUR."
+        if spot.payed?
+          spot.update_attributes(client_id: nil, state: 'free', balance: 0, waiter_id: nil)
+          current_user.update_attributes(status: 'out')
+          amount = delete_all_orders(spot)
+          redirect_to root_path, notice: "Thanks for your visit!"
+        else
+          spot.update_attributes(state: 'finished')
+          current_user.update_attributes(status: 'want_to_pay')
+          redirect_to root_path, notice: "Thanks! Please wait for waiter and prepare #{spot.balance} EUR."
+        end
       end
+    else
+      User.where(id: spot.client_id).first.update_attributes(status: 'out')
+      spot.update_attributes(client_id: nil, state: 'free', balance: 0, waiter_id: nil)
+      amount = delete_all_orders(spot)
+      redirect_to root_path, notice: "Spot closed!"
     end
   end
 
