@@ -20,6 +20,10 @@ class Spot < ActiveRecord::Base
     self.balance == 0
   end
 
+  def finished?
+    self.state == 'finished'
+  end
+
   def balance
     -self.orders.sum('amount')
   end

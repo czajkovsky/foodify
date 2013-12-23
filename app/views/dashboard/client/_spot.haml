@@ -14,9 +14,18 @@
               %span{ class: spot.decorate.state_class }= spot.state
         .col-xs-12.col-sm-6
           - if spot.decorate.has_waiter?
-            .list-group
-              = link_to 'New order', new_spot_order_path(spot), class: 'list-group-item'
-              = link_to 'Finish', close_spot_path(spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }
+            - if !spot.finished?
+              .list-group
+                = link_to 'New order', new_spot_order_path(spot), class: 'list-group-item'
+                = link_to 'Finish', close_spot_path(spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }
+            - else
+              .panel.panel-warning
+                .panel-heading
+                  %h3.panel-title What now?
+                .panel-body
+                  Please prepare
+                  %strong= -spot.balance
+                  PLN
           - else
             .list-group
               = link_to "I don't want to wait! Close my spot", close_spot_path(spot), method: :put, class: 'list-group-item', data: { confirm: 'Are you sure?' }
