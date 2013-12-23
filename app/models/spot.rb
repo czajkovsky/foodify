@@ -20,4 +20,8 @@ class Spot < ActiveRecord::Base
     self.balance == 0
   end
 
+  def balance
+    -self.orders.sum('amount')
+  end
+
 end
