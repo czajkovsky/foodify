@@ -28,4 +28,12 @@ class Order < ActiveRecord::Base
     sum
   end
 
+  def items
+    items = []
+    self.positions.each do |p|
+      items.push(p.item(p.item_id))
+    end
+    items
+  end
+
 end
