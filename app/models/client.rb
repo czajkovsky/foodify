@@ -26,7 +26,7 @@ class Client < User
   end
 
   def state_class
-    classes = { 'out' => 'default', 'at_table' => 'success', 'finished' => 'warning' }
+    classes = { 'out' => 'default', 'at_table' => 'success', 'finished' => 'warning', 'want_to_pay' => 'danger' }
     classes[self.status.to_s]
   end
 
