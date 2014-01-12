@@ -55,14 +55,18 @@ class SpotsController < ApplicationController
   end
 
   def assign_to_client
-    if current_user.has_spot?
-      redirect_to root_path, notice: "Sorry, you can't join more than one spot!"
-    elsif spot.client_id.present?
-      redirect_to root_path, notice: 'Sorry, this spot is not free any more!'
-    else
-      spot.update_attributes(client_id: current_user.id, state: 'pending', balance: 0)
-      current_user.update_attributes(status: 'at_table')
-      redirect_to root_path, notice: 'This spot is yours!'
+    User.transaction do
+      Spot.transaction do
+        if current_user.has_spot?
+          redirect_to root_path, notice: "Sorry, you can't join more than one spot!"
+        elsif spot.client_id.present?
+          redirect_to root_path, notice: 'Sorry, this spot is not free any more!'
+        else
+          spot.update_attributes(client_id: current_user.id, state: 'pending', balance: 0)
+          current_user.update_attributes(status: 'at_table')
+          redirect_to root_path, notice: 'This spot is yours!'
+        end
+      end
     end
   end
 
