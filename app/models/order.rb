@@ -15,6 +15,10 @@ class Order < ActiveRecord::Base
     self.state == 'cooking' && self.cook_id == id
   end
 
+  def new?
+    self.state == 'new'
+  end
+
   def label_class
     classes = { 'new' => 'info', 'pending' => 'danger', 'cooking' => 'primary', 'finished' => 'warning', 'delivered' => 'success' }
     classes[self.state.to_s]

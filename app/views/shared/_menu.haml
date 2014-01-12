@@ -1,6 +1,6 @@
 .navbar.navbar-default.navbar-fixed-top{ role: 'navigation' }
   .navbar-container
-    .container
+    .container{ data: { no_turbolink: 'true' } }
       .navbar-header
         = link_to 'Foodify', root_path, class: 'navbar-brand'
         = link_to '#', class: 'navbar-toggle', data: { toggle: 'collapse', target: '.navbar-collapse' } do
