@@ -14,6 +14,7 @@
           - if order.new?
             = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default with-margin'
             = link_to 'Cancel', spot_order_path(spot), method: :delete, class: 'btn btn-default with-margin'
+          = link_to 'Back', root_path, class: 'btn btn-default'
       - if order.positions.count > 0
         .panel.panel-default
           .panel-heading
@@ -32,7 +33,6 @@
                     %td= number_to_currency(po.item(po.item_id).price)
                     %td
                       = link_to 'Remove', spot_order_position_path(spot, order, po), method: :delete, class: 'btn btn-default pull-right' if order.new?
-      = link_to 'Back', root_path, class: 'btn btn-default'
     - if order.new?
       .col-md-6
         .panel.panel-default
