@@ -24,6 +24,10 @@ class Spot < ActiveRecord::Base
     self.state == 'finished'
   end
 
+  def belongs_to_client? client
+    self.client_id == client.id ? true : false
+  end
+
   def balance
     balance = self.orders.sum('amount')
     balance > 0 ? -balance : 0
