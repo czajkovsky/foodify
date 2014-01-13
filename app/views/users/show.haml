@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-xs-12
+      %h2
+        = user.email
+  .row
+    .col-xs-12.col-sm-8.col-md-6.col-lg-6
+      %ul.list-group
+        %li.list-group-item
+          %strong ID:
+          = user.id
+        %li.list-group-item
+          %strong Email:
+          = user.email
+        %li.list-group-item
+          %strong Type:
+          = user.type
+      = link_to 'Delete', user_path, method: :delete, class: 'btn btn-default with-margin'
+      = link_to 'Edit', edit_user_path(user), class: 'btn btn-default with-margin'
+      = link_to 'Back', users_path, class: 'btn btn-default with-margin'
