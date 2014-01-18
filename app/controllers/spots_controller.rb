@@ -40,7 +40,7 @@ class SpotsController < ApplicationController
           else
             spot.update_attributes(state: 'finished')
             current_user.update_attributes(status: 'want_to_pay')
-            redirect_to root_path, notice: "Thanks! Please wait for waiter and prepare #{spot.balance} EUR."
+            redirect_to root_path, notice: "Thanks! Please wait for waiter and prepare #{-spot.balance} EUR."
           end
         else
           redirect_to root_path, notice: "Sorry, this spot doesn't belong to you anymore."

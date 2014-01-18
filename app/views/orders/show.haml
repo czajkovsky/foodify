@@ -12,7 +12,7 @@
               %strong Balance
               = number_to_currency(order.current_amount)
           - if order.new?
-            = link_to 'Ready! To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default with-margin'
+            = link_to 'To kitchen', send_order_path(spot, order), method: :put, class: 'btn btn-default with-margin'
             = link_to 'Cancel', spot_order_path(spot), method: :delete, class: 'btn btn-default with-margin'
           = link_to 'Back', root_path, class: 'btn btn-default'
       - if order.positions.count > 0
