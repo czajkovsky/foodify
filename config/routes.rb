@@ -3,14 +3,15 @@ Foodify::Application.routes.draw do
   devise_for :users
   resources :users
   resources :clients, controller: 'users'
+  resources :cooks, controller: 'users'
+  resources :waiters, controller: 'users'
+
   resources :spots do
     resources :orders do
       resources :position
     end
   end
 
-  resources :cooks, controller: 'users'
-  resources :waiters, controller: 'users'
   resources :items
 
   root to: 'dashboard#index'

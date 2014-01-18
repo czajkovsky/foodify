@@ -6,7 +6,12 @@ class UsersController < ApplicationController
   before_filter :is_worker?
 
   def update
-    if user.save
+    p = nil
+    [:cook, :waiter, :client].each do |role|
+      p = params[role] unless params[role].nil?
+    end
+
+    if user.update_attributes(p)
       redirect_to user, notice: 'User was successfully updated.'
     else
       render action: 'edit'
