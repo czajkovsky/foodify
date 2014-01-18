@@ -5,7 +5,7 @@
   = simple_form_for(user) do |u|
     .row
       .col-lg-4.col-md-5.col-sm-6.col-xs-12
-        = u.input :type
+        = u.input :type, as: :select, collection: user.types
     .row
       .col-lg-4.col-md-5.col-sm-6.col-xs-12
         = u.button :submit, class: 'btn btn-default'
