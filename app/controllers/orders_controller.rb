@@ -13,11 +13,13 @@ class OrdersController < ApplicationController
   end
 
   def cook
-    if order.state == 'pending'
-      order.update_attributes(state: 'cooking', cook_id: current_user.id)
-      redirect_to root_path, notice: "You're cooking Order ##{order.id}"
-    else
-      redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'Pending' state!"
+    Order.transaction do
+      if order.state == 'pending'
+        order.update_attributes(state: 'cooking', cook_id: current_user.id)
+        redirect_to root_path, notice: "You're cooking Order ##{order.id}"
+      else
+        redirect_to root_path, notice: "Sorry, order ##{order.id} was not in 'Pending' state!"
+      end
     end
   end
 
